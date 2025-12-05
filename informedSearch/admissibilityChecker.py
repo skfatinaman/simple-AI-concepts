@@ -27,13 +27,14 @@ def dijsktraAlgo(nodes,start,goal,graph):
     minHeap.append((0,goal))
     while minHeap:
         cost,thisNode = heapq.heappop(minHeap)
-        if thisNode == start:
-            return distance
         if thisNode not in distance or distance[thisNode]>cost:
             distance[thisNode] = cost
             for neighbor,dist in graph[thisNode].items():
                 pushTuple = (cost+dist,neighbor)
                 heapq.heappush(minHeap,pushTuple)
+        if thisNode == start:
+            print(distance)
+            return distance
     return None
 
 def admissiblityChecker(distance,heuristics):
